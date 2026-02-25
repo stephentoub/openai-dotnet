@@ -113,6 +113,12 @@ public partial class ResponsesClient
         _endpoint = OpenAIClient.GetEndpoint(options);
     }
 
+    [Experimental("SCME0002")]
+    public ResponsesClient(ResponsesClientSettings settings)
+        : this(settings?.Model, AuthenticationPolicy.Create(settings), settings?.Options)
+    {
+    }
+
     /// <summary>
     /// Gets the name of the model used in requests sent to the service.
     /// </summary>
@@ -596,7 +602,6 @@ public partial class ResponsesClient
     {
         Argument.AssertNotNull(options, nameof(options));
         Argument.AssertNotNullOrEmpty(options.ResponseId, nameof(options.ResponseId));
-    
         return new ResponsesClientGetResponseInputItemsAsyncCollectionResultOfT(
             client: this,
             responseId: options.ResponseId,
