@@ -45,20 +45,20 @@ namespace OpenAI.Realtime
             return ClientResult.FromResponse(await Pipeline.ProcessMessageAsync(message, options).ConfigureAwait(false));
         }
 
-        public virtual ClientResult<RealtimeCreateClientSecretResponse> CreateRealtimeClientSecret(RealtimeCreateClientSecretRequest body, CancellationToken cancellationToken = default)
+        public virtual ClientResult<GACreateClientSecretResult> CreateRealtimeClientSecret(GACreateClientSecretOptions options, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(body, nameof(body));
+            Argument.AssertNotNull(options, nameof(options));
 
-            ClientResult result = CreateRealtimeClientSecret(body, cancellationToken.ToRequestOptions());
-            return ClientResult.FromValue((RealtimeCreateClientSecretResponse)result, result.GetRawResponse());
+            ClientResult result = CreateRealtimeClientSecret(options, cancellationToken.ToRequestOptions());
+            return ClientResult.FromValue((GACreateClientSecretResult)result, result.GetRawResponse());
         }
 
-        public virtual async Task<ClientResult<RealtimeCreateClientSecretResponse>> CreateRealtimeClientSecretAsync(RealtimeCreateClientSecretRequest body, CancellationToken cancellationToken = default)
+        public virtual async Task<ClientResult<GACreateClientSecretResult>> CreateRealtimeClientSecretAsync(GACreateClientSecretOptions options, CancellationToken cancellationToken = default)
         {
-            Argument.AssertNotNull(body, nameof(body));
+            Argument.AssertNotNull(options, nameof(options));
 
-            ClientResult result = await CreateRealtimeClientSecretAsync(body, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
-            return ClientResult.FromValue((RealtimeCreateClientSecretResponse)result, result.GetRawResponse());
+            ClientResult result = await CreateRealtimeClientSecretAsync(options, cancellationToken.ToRequestOptions()).ConfigureAwait(false);
+            return ClientResult.FromValue((GACreateClientSecretResult)result, result.GetRawResponse());
         }
     }
 }
